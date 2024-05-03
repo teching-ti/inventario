@@ -1,0 +1,24 @@
+.container-xl {
+    height: 100vh;
+}
+
+aside {
+    min-height: 100vh;
+    width: 250px;
+    background:rgba(30, 39, 46,1.0);
+}
+
+main {
+    flex: 1; /* Hace que el contenido principal ocupe todo el espacio restante */
+}
+
+.list-group-item{
+    color: rgba(220, 221, 225,1.0);
+    background:rgba(30, 39, 46,1.0);
+}
+
+.list-group-item:hover{
+    color: rgba(220, 221, 225,1.0);
+    background-color: rgba(72, 84, 96,1.0);
+    transition: all ease .2 s;
+}
