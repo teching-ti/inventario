@@ -3,9 +3,12 @@
 }
 
 aside {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     width: 250px;
-    background:rgba(30, 39, 46,1.0);
+    background:#1D1D11;
+    justify-content: space-between;
 }
 
 main {
@@ -13,12 +16,141 @@ main {
 }
 
 .list-group-item{
-    color: rgba(220, 221, 225,1.0);
-    background:rgba(30, 39, 46,1.0);
+    background: #1D1D11;
+    border: none;
+    color: white;
 }
 
-.list-group-item:hover{
-    color: rgba(220, 221, 225,1.0);
-    background-color: rgba(72, 84, 96,1.0);
-    transition: all ease .2 s;
+.menu-option {
+    border: none;
+    border-bottom: solid 1.5px transparent;
+    color: rgba(220, 221, 225, 1.0);
+    background: #1d1d11;
+    transition: color 0.2s ease-in-out;
+    position: relative;
 }
+
+.menu-option::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background-color: #2272ff;
+    transition: width 0.3s ease-in-out;
+}
+
+.menu-option:hover::after {
+    width: 100%;
+}
+
+.menu-option:hover {
+    color: white;
+    background-color: black;
+    /* transform: scale(110%); */
+}
+
+header{
+    display: none;
+    width: 100%;
+    background-color: #1d1d11;
+    padding: 10px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#boton-mostrar-menu{
+    color: gray;
+    background: transparent;
+    padding: .8rem;
+    border: solid 1px gray;
+    border-radius: 4px;
+}
+
+#boton-cerrar-menu{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0;
+    height: fit-content;
+}
+
+.botones-mode{
+    display: flex;
+    margin: 1rem 0;
+}
+
+.botones-mode>li{
+    display: grid;
+    place-content: center;
+}
+
+.modo-claro.activo{
+    background: red;
+}
+
+.modo-oscuro-activo{
+    background: blue;
+}
+
+.mensaje-ok{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: .4rem;
+    max-width: 350px;
+    padding: .4rem;
+    border: solid 3px #2ed573;
+    border-radius: 6px;
+    background: white;
+    box-shadow: rgba(91, 182, 91, 0.35) 0px 5px 15px;
+}
+
+.mensaje-error{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: .4rem;
+    max-width: 350px;
+    padding: .4rem;
+    border: solid 3px #c22f1f;
+    border-radius: 6px;
+    background: white;
+    box-shadow: rgba(221, 19, 19, 0.35) 0px 5px 15px;
+}
+
+@media (max-width: 767px) {
+    .container-large {
+        flex-direction: column;
+    }
+
+    header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    aside {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out;
+      transform: translateY(-100%);
+    }
+
+    #boton-cerrar-menu{
+        display: flex;
+    }
+}
+
+/* Cambiar el color de fondo solo en el modo oscuro (Esa línea se aplica para cambiar el color que proporciona Bootstrap)*/
+@media (prefers-color-scheme: dark) {
+    body[data-bs-theme="dark"] {
+      background-color: #2c2c2c !important;
+    }
+  }
+  

@@ -4,12 +4,12 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center align-items-center mt-5">
-        <div id="contenedor-form-img" class="d-flex justify-content-between align-items-center border rounded-4 overflow-hidden m-0 p-0" style="max-width: 900px; ">
+        <div id="contenedor-form-img" class="d-flex justify-content-between align-items-center border rounded-4 overflow-hidden m-0 p-0 animate__animated animate__fadeInUp" style="max-width: 900px; ">
             <figure id="contenedor-imagen" class="overflow-hidden m-0">
                 <img id="imagen-formulario" alt="imagen-formulario" src="{{ url_for('static', filename='images/formulario-imagen.webp') }}" class="image-fluid">
             </figure>
             <form id="formulario" method="POST" action="{{ url_for('access.login') }}" class="px-3">
-                <h2 class="my-5">Sistema de Inventario</h2>
+                <h2 class="my-5">Sistema de TI</h2>
                 {{ form.hidden_tag() }}
                 <div class="form-floating mb-5">
                     {{ form.username(class="form-control", size=20, placeholder='-') }}
@@ -19,7 +19,7 @@
                     {{ form.password(type='password', class="form-control", size=20, placeholder='-')}}
                     {{ form.password.label(for='password')}}
                 </div>
-                <div class="mb-4">{{ form.submit(class='btn btn-outline-primary') }}
+                <div class="mb-4">{{ form.submit(class='btn btn-primary') }}
                 </div>
             </form>
         </div>

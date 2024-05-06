@@ -14,23 +14,36 @@
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <!-- Estilos para la base -->
    <link rel="stylesheet" href="{{ url_for('static', filename='styles/base/template_base.css') }}">
+   <!-- Librería de CSS para pequeñas animaciones con movimiento -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
    <!-- Enlaces -->
    {% block styles %} {% endblock %}
    <title>{% block title %} {% endblock %}</title>
 </head>
 <body data-bs-theme="light">
    <div class="container-large d-flex">
+      <header>
+         <figure>
+            <img src="{{ url_for('static', filename='images/logo_teching.png') }}" alt="imagen-logo-teching">
+         </figure>
+         <button id="boton-mostrar-menu"><i class="fa-solid fa-2xl fa-bars"></i></button>
+      </header>
       <aside class="p-3">
          <!-- Contenido del aside -->
-         <ul class="list-group">
+         <ul class="list-group contenedor-menu">
             <li class="list-group-item py-3"><img src="{{ url_for('static', filename='images/logo_teching.png') }}" alt="imagen-logo"></li>
-            <li type="button" class="list-group-item list-group-item-action py-3"><i class="fa-solid fa-house-chimney"></i> Inicio</li>
-            <li type="button" class="list-group-item list-group-item-action py-3"><i class="fa-solid fa-users"></i> Usuarios</li>
-            <li type="button" class="list-group-item list-group-item-action py-3"><i class="fa-solid fa-box-open"></i> Activos</li>
-            <li type="button" class="list-group-item list-group-item-action py-3"><i class="fa-solid fa-paper-plane"></i> Movimientos</li>
-            <li type="button" class="list-group-item list-group-item-action py-3"><i class="fa-solid fa-file-signature"></i> Cargos</li>
-            <li type="button" class="list-group-item">ver. 0.0.1</button>
-            </ul>
+            <li type="button" class="list-group-item list-group-item-action py-3 menu-option"><i class="fa-solid fa-house-chimney"></i> Inicio</li>
+            <li type="button" class="list-group-item list-group-item-action py-3 menu-option"><i class="fa-solid fa-users"></i> Usuarios</li>
+            <li type="button" class="list-group-item list-group-item-action py-3 menu-option"><i class="fa-solid fa-box-open"></i> Activos</li>
+            <li type="button" class="list-group-item list-group-item-action py-3 menu-option"><i class="fa-solid fa-paper-plane"></i> Movimientos</li>
+            <li type="button" class="list-group-item list-group-item-action py-3 menu-option"><i class="fa-solid fa-file-signature"></i> Cargos</li>
+            <div class="botones-mode">
+               <li type="button" class="list-group-item list-group-item-action py-3 menu-option modo-claro"><i class="fa-solid fa-sun"></i></li>
+               <li type="button" class="list-group-item list-group-item-action py-3 menu-option modo-oscuro"><i class="fa-solid fa-cloud-moon"></i></li>
+            </div>
+            <!-- <li type="button" class="list-group-item">ver. 0.0.1</button> -->
+         </ul>
+         <li type="button" class="list-group-item list-group-item-action py-3" id="boton-cerrar-menu"><i class="fa-regular fa-2xl fa-circle-xmark"></i></li>
       </aside>
       <main class="flex-grow-1">
          <!-- Contenido principal -->
@@ -39,7 +52,32 @@
       </main>
    </div>
 
+   <div id="flash-messages" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="{{ category }}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+  </div>
+
    <!--Bootstrap-->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+   <script type="module" src="{{ url_for('static', filename='scripts/base/template_base.js') }}"></script>
+
+   <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var flashMessages = document.getElementById('flash-messages');
+          if (flashMessages) {
+              setTimeout(function() {
+                  flashMessages.innerHTML = '';
+              }, 2000);
+          }
+      });
+  </script>
 </body>
 </html>

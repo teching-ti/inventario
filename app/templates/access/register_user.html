@@ -1,0 +1,38 @@
+{% extends 'base/template_base.html' %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='styles/access/register_user.css') }}"/>{% endblock %}
+{% block title %}Registrar Usuario{% endblock %}
+<!--Este usuario tendrá acceso al sistema -->
+
+{% block content %}
+<div id="contenedor-formulario-registro" class="mt-5">
+    <form method="POST" id="formulario" class="card  p-5" action="{{ url_for('access.register') }}">
+        <h2>Registrar Usuario</h2>
+        <span class="texto-pequeño">Este usuario tendrá acceso al sistema</span>
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.username.label(class="form-label") }}
+            {{ form.username(class="form-control") }}
+            {% for error in form.username.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control") }}
+            {% for error in form.password.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.confirm_password.label(class="form-label") }}
+            {{ form.confirm_password(class="form-control") }}
+            {% for error in form.confirm_password.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
