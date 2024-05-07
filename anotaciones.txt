@@ -1,0 +1,18 @@
+07_05
+{
+- El perfil para el administrador será "tech@admin"
+- El perfil de usuario será "tech@user"
+
+- usuario creado administrador
+usuario = ti_administrador
+contraseña = ti@administrador_
+perfil = tech@admin
+}
+
+09:16 - registrar usuario y login required para acceder a ciertos sitios, login_required funciona.
+
+
+
+/* para virtualizacion
+set "FLASK_APP=run.py"
+set FLASK_DEBUG=1

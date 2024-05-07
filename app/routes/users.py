@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 
 users_bp = Blueprint('users', __name__, url_prefix='/usuarios')
 
@@ -13,11 +14,13 @@ El panel principal de usuarios mostrará recuadros
 
 # que la inserción funcione por ajax y que actualice la página
 @users_bp.route('/', methods=['GET'])
+@login_required
 def panel_principal():
     return render_template('users/users_index.html')
 
 # el agregar usuarios se mostrará como un modal
 @users_bp.route('/agregar', methods=['GET','POST'])
+@login_required
 def agregar_usuarios():
     return "<><>"
 

@@ -5,9 +5,10 @@
 
 {% block content %}
 <div id="contenedor-formulario-registro" class="mt-5">
-    <form method="POST" id="formulario" class="card  p-5" action="{{ url_for('access.register') }}">
+    <form method="POST" id="formulario" class="card p-4" action="{{ url_for('access.register') }}">
         <h2>Registrar Usuario</h2>
         <span class="texto-pequeño">Este usuario tendrá acceso al sistema</span>
+        <hr>
         {{ form.hidden_tag() }}
         <div class="mb-3">
             {{ form.username.label(class="form-label") }}
@@ -27,6 +28,13 @@
             {{ form.confirm_password.label(class="form-label") }}
             {{ form.confirm_password(class="form-control") }}
             {% for error in form.confirm_password.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            {{ form.profile.label(class="form-label") }}
+            {{ form.profile(class="form-control") }}
+            {% for error in form.profile.errors %}
                 <div class="invalid-feedback">{{ error }}</div>
             {% endfor %}
         </div>

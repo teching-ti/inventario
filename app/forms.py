@@ -13,4 +13,5 @@ class UsuarioAccesoRegistro(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired(), Length(min=10, max=25)])
     password = PasswordField('Contraseña', validators=[DataRequired(), Length(min=8, max=25)])
     confirm_password = PasswordField('Confirmar Contraseña', validators=[DataRequired()])
+    profile = StringField('Perfil', validators=[DataRequired(), Length(min=8, max=10)])
     submit = SubmitField('Registrar')
